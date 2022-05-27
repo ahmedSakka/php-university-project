@@ -1,3 +1,7 @@
+<?php
+include_once('../includes/DBconnection.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,49 +56,34 @@
             <th width="100px">From</th>
             <th width="100px">To</th>
         </tr>
+        
+        <?php
+ $result = mysqli_query($connection, "SELECT * FROM course");
+ while ($row = mysqli_fetch_array($result)) { ?>
+	<tr class="<?php if (isset($classname)) {
+   echo $classname;
+ } ?>
+        
         <tr height="80px" >
-            <th >1</th>
-            <td colspan="2">Automata theory</td>
-            <td colspan="2">48</td>
-            <td>1/9/2021</td>
-            <td>23/12/2021</td>
-            <td colspan="2">Al-Azhar University</td>
-            <td colspan="2"><a href="Course_1View.php" target="_blank">View</a></td>
-            <td >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, necessitatibus!</td>
+            <th ><?php echo $row["id"]; ?></th>
+            <td colspan="2"><?php echo $row["name"]; ?></td>
+            <td colspan="2"><?php echo $row["hours"]; ?></td>
+            <td><?php echo $row["datefrom"]; ?></td>
+            <td><?php echo $row["dateto"]; ?></td>
+            <td colspan="2"><?php echo $row["ins"]; ?></td>
+            <td colspan="2"><a href="<?php echo $row["url"]; ?>" target="_blank">View</a></td>
+            <td ><?php echo $row["note"]; ?></td>
+        <tr    height="80px" >
         </tr>
-        <tr height="80px">
-            <th>2</th>
-            <td colspan="2">Web Technelogy</td>
-            <td colspan="2">45</td>
-            <td>20/1/2021</td>
-            <td>15/4/2021</td>
-            <td colspan="2">Vision Plus</td>
-            <td colspan="2"><a href="Course_2View.php" target="_blank">View</a></td>
-            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, iusto!</td>
-        </tr>
-        <tr height="80px" >
-            <th>3</th>
-            <td colspan="2">Electrical Circuits</td>
-            <td colspan="2">35</td>
-            <td>10/6/2021</td>
-            <td>15/7/2021</td>
-            <td colspan="2">Coursera</td>
-            <td colspan="2"><a href="Course_3View.php" target="_blank">View</a></td>
-            <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque, esse.</td>
-        </tr>
-        <tr height="80px">
-            <th id="b3">4</th>
-            <td colspan="2" >Operationg Systems</td>
-            <td colspan="2">25</td>
-            <td>1/8/2021</td>
-            <td>15/9/2021</td>
-            <td colspan="2">Udemy</td>
-            <td colspan="2"><a href="Course4View.php" target="_blank">View</a></td>
-            <td id="b4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe, vel.</td>
-        </tr>
+        
     </table>
 </div>
 
 </body>
 
+    <?php 
+ 
+      }
+ ?>
+    
 </html>
